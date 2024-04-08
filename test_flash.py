@@ -1,6 +1,7 @@
 import numpy as np
 
-from overall import bubblepoint_pressure, comp_verify, dewpoint_pressure
+from num_methods import mix_comp_table
+from overall import bubblepoint_pressure, comp_verify, dewpoint_pressure, phase_comp
 from proptables.bini_vals import bini_dict
 from proptables.crit_vals import prop_dict
 
@@ -22,3 +23,7 @@ py_dew = dewpoint_pressure(100, prac_comp, prop_dict, bini_dict)
 hy_dew = 67.3 - 14.7  # psia, hysys calculation for composition
 mi_dew = np.nan
 print(f"DewPoint - MI PVT: {mi_dew} psia, Hysys: {round(hy_dew,2)} psig, Python: {round(py_dew,2)} psig")
+
+# need to build out a python check / verification for this
+xi_list, yi_list = phase_comp(175, 150, prac_comp, prop_dict, bini_dict)
+print(mix_comp_table(prac_comp, xi_list, yi_list))

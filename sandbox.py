@@ -14,7 +14,7 @@ Useful hints/tips
 """
 
 from num_methods import mix_comp_table
-from overall import bubblepoint_pressure, dewpoint_pressure, phase_comp
+from overall import bubblepoint_pressure, comp_verify, dewpoint_pressure, phase_comp
 from proptables.bini_vals import bini_dict
 from proptables.crit_vals import prop_dict
 
@@ -36,4 +36,8 @@ print(f"Python DewPoint: {round(py_dew,2)} psig\n")
 xi_list, yi_list = phase_comp(175, 150, prac_comp, prop_dict, bini_dict)
 print(mix_comp_table(prac_comp, xi_list, yi_list))
 
-# hysys was in units of psia, I was in psig...
+test_comp = {"h2s": 0.1, "c3": 0.4, "nc4": 0.3, "nc5": 0.1, "nc8": 0.1}
+comp_verify(test_comp, prop_dict, bini_dict)
+
+xi_list, yi_list = phase_comp(175, 150, test_comp, prop_dict, bini_dict)
+print(mix_comp_table(test_comp, xi_list, yi_list))
