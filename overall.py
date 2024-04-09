@@ -7,8 +7,6 @@ import eos.peng_robinson as pr
 import num_methods as nm
 import rachford_rice as rr
 
-# from decimal import Decimal
-
 
 def comp_verify(comp_dict: dict, prop_dict: dict, bini_dict: dict) -> None:
     """Composition Verification

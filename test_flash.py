@@ -17,12 +17,12 @@ comp_verify(prac_comp, prop_dict, bini_dict)
 py_bub = bubblepoint_pressure(100, prac_comp, prop_dict, bini_dict)
 hy_bub = 124.9 - 14.7  # psia, hysys calculation, for composition
 mi_bub = 134.28  # zero for binary interaction parameters
-print(f"BubblePoints - MI PVT: {mi_bub} psia, Hysys: {hy_bub} psig, Python: {round(py_bub,2)} psig")
+print(f"\nBubblePoints - MI PVT: {mi_bub} psi, Hysys: {hy_bub} psig, Python: {round(py_bub,2)} psig")
 
 py_dew = dewpoint_pressure(100, prac_comp, prop_dict, bini_dict)
 hy_dew = 67.3 - 14.7  # psia, hysys calculation for composition
 mi_dew = np.nan
-print(f"DewPoint - MI PVT: {mi_dew} psia, Hysys: {round(hy_dew,2)} psig, Python: {round(py_dew,2)} psig")
+print(f"\nDewPoint - MI PVT: {mi_dew} psia, Hysys: {round(hy_dew,2)} psig, Python: {round(py_dew,2)} psig\n")
 
 # need to build out a python check / verification for this
 xi_list, yi_list = phase_comp(175, 150, prac_comp, prop_dict, bini_dict)
