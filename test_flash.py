@@ -27,3 +27,31 @@ print(f"\nDewPoint - MI PVT: {mi_dew} psia, Hysys: {round(hy_dew,2)} psig, Pytho
 # need to build out a python check / verification for this
 xi_list, yi_list = phase_comp(175, 150, prac_comp, prop_dict, bini_dict)
 print(mix_comp_table(prac_comp, xi_list, yi_list))
+
+# adding here to store "good" inputs
+lift_comp = {
+    "c1": 0.7785,
+    "c2": 0.0575,
+    "c3": 0.0249,
+    "nc4": 0.0039,
+    "ic4": 0.0021,
+    "nc5": 0.0011,
+    "ic5": 0.0008,
+    "nc6": 0.0013,
+    "nc7": 0.0007,
+    "nc8": 0.0003,
+    "nc9": 0.0002,
+    "nc10": 0.0001,
+    "co2": 0.1228,
+    "n2": 0.0058,
+}
+comp_verify(lift_comp, prop_dict, bini_dict)
+
+py_dew = dewpoint_pressure(50, lift_comp, prop_dict, bini_dict)
+print(f"Python DewPoint: {round(py_dew,2)} psig\n")
+
+py_bub = bubblepoint_pressure(-100, lift_comp, prop_dict, bini_dict)
+print(f"\nPython BubblePoint: {round(py_bub,2)} psig\n")
+
+xi_list, yi_list = phase_comp(535, -100, lift_comp, prop_dict, bini_dict)
+print(mix_comp_table(lift_comp, xi_list, yi_list))
