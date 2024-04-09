@@ -18,14 +18,13 @@ from overall import bubblepoint_pressure, comp_verify, dewpoint_pressure, phase_
 from proptables.bini_vals import bini_dict
 from proptables.crit_vals import prop_dict
 
-comp = "c1"
+# comp = "c1"
 # print(prop_dict[comp])
-
 # print(f"Binary Interaction Parameter for C1 and nC5 is {bini_dict['c1']['nc5']}")
 
+"""
 prac_comp = {"c3": 0.6, "nc4": 0.3, "nc5": 0.1}
-
-# add some code to double check that it all sums to one, and it has recognized components
+comp_verify(prac_comp, prop_dict, bini_dict)
 
 py_bub = bubblepoint_pressure(150, prac_comp, prop_dict, bini_dict)
 print(f"\nPython BubblePoint: {round(py_bub,2)} psig\n")
@@ -41,3 +40,31 @@ comp_verify(test_comp, prop_dict, bini_dict)
 
 xi_list, yi_list = phase_comp(175, 150, test_comp, prop_dict, bini_dict)
 print(mix_comp_table(test_comp, xi_list, yi_list))
+"""
+# this composition really shows how a lack of guardrails can negatively impact your runs
+lift_comp = {
+    "c1": 0.7785,
+    "c2": 0.0575,
+    "c3": 0.0249,
+    "nc4": 0.0039,
+    "ic4": 0.0021,
+    "nc5": 0.0011,
+    "ic5": 0.0008,
+    "nc6": 0.0013,
+    "nc7": 0.0007,
+    "nc8": 0.0003,
+    "nc9": 0.0002,
+    "nc10": 0.0001,
+    "co2": 0.1228,
+    "n2": 0.0058,
+}
+comp_verify(lift_comp, prop_dict, bini_dict)
+
+py_dew = dewpoint_pressure(50, lift_comp, prop_dict, bini_dict)
+print(f"Python DewPoint: {round(py_dew,2)} psig\n")
+
+py_bub = bubblepoint_pressure(-100, lift_comp, prop_dict, bini_dict)
+print(f"\nPython BubblePoint: {round(py_bub,2)} psig\n")
+
+xi_list, yi_list = phase_comp(535, -100, lift_comp, prop_dict, bini_dict)
+print(mix_comp_table(lift_comp, xi_list, yi_list))
