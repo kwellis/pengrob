@@ -28,6 +28,7 @@ print(f"\nDewPoint - MI PVT: {mi_dew} psia, Hysys: {round(hy_dew,2)} psig, Pytho
 xi_list, yi_list = phase_comp(175, 150, prac_comp, prop_dict, bini_dict)
 print(mix_comp_table(prac_comp, xi_list, yi_list))
 
+"""
 # adding here to store "good" inputs
 lift_comp = {
     "c1": 0.7785,
@@ -55,3 +56,6 @@ print(f"\nPython BubblePoint: {round(py_bub,2)} psig\n")
 
 xi_list, yi_list = phase_comp(535, -100, lift_comp, prop_dict, bini_dict)
 print(mix_comp_table(lift_comp, xi_list, yi_list))
+"""
+
+kup_gas = {"c1": 0.8, "c2": 0.1, "c3": 0.1}

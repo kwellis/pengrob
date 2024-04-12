@@ -68,3 +68,13 @@ print(f"\nPython BubblePoint: {round(py_bub,2)} psig\n")
 
 xi_list, yi_list = phase_comp(535, -100, lift_comp, prop_dict, bini_dict)
 print(mix_comp_table(lift_comp, xi_list, yi_list))
+
+prac_comp = {"c3": 0.6, "nc4": 0.3, "nc5": 0.1}
+
+# add some code to double check that it all sums to one, and it has recognized components
+comp_verify(prac_comp, prop_dict, bini_dict)
+
+py_bub = bubblepoint_pressure(100, prac_comp, prop_dict, bini_dict)
+hy_bub = 124.9 - 14.7  # psia, hysys calculation, for composition
+mi_bub = 134.28  # zero for binary interaction parameters
+print(f"\nBubblePoints - MI PVT: {mi_bub} psi, Hysys: {hy_bub} psig, Python: {round(py_bub,2)} psig")
