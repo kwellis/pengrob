@@ -4,6 +4,7 @@ from num_methods import mix_comp_table
 from overall import bubblepoint_pressure, comp_verify, dewpoint_pressure, phase_comp
 from proptables.bini_vals import bini_dict
 from proptables.crit_vals import prop_dict
+from visual import hysys_plot, lift, tern
 
 # bad_comp = {"c3": 0.7, "nc4": 0.3, "nc5": 0.1} # does not sum to one
 # bad_comp = {"h3": 0.6, "h4": 0.3, "nc5": 0.1} # components are not present
@@ -28,7 +29,13 @@ print(f"\nDewPoint - MI PVT: {mi_dew} psia, Hysys: {round(hy_dew,2)} psig, Pytho
 xi_list, yi_list = phase_comp(175, 150, prac_comp, prop_dict, bini_dict)
 print(mix_comp_table(prac_comp, xi_list, yi_list))
 
-"""
+py_pres = [52.82, 110.15]
+py_temp = [100.0, 100.0]
+py_desc = ["dew", "bub"]
+tit = "Ternary System of C3, nC4 and nC5"
+hysys_plot(py_pres, py_temp, py_desc, tern["psig"], tern["deg_f"], tern["sat"], tit)  # type: ignore
+
+
 # adding here to store "good" inputs
 lift_comp = {
     "c1": 0.7785,
@@ -56,6 +63,9 @@ print(f"\nPython BubblePoint: {round(py_bub,2)} psig\n")
 
 xi_list, yi_list = phase_comp(535, -100, lift_comp, prop_dict, bini_dict)
 print(mix_comp_table(lift_comp, xi_list, yi_list))
-"""
 
-kup_gas = {"c1": 0.8, "c2": 0.1, "c3": 0.1}
+py_pres = [py_dew, py_bub]
+py_temp = [50, -100.0]
+py_desc = ["dew", "bub"]
+tit = "Prudhoe Bay Lift Gas, 14 Component Mixture"
+hysys_plot(py_pres, py_temp, py_desc, lift["psig"], lift["deg_f"], lift["sat"], tit)  # type: ignore
